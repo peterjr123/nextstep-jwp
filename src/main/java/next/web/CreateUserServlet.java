@@ -2,12 +2,12 @@ package next.web;
 
 import java.io.IOException;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import next.model.User;
 
 import org.slf4j.Logger;
@@ -25,7 +25,10 @@ public class CreateUserServlet extends HttpServlet {
         User user = new User(req.getParameter("userId"), req.getParameter("password"), req.getParameter("name"),
                 req.getParameter("email"));
         log.debug("user : {}", user);
+        HttpSession session = req.getSession();
+        session.setAttribute("user", user);
+
         DataBase.addUser(user);
-        resp.sendRedirect("/user/list");
+        resp.sendRedirect("./list");
     }
 }

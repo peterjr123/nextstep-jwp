@@ -14,6 +14,10 @@ public class DataBase {
         users.put(user.getUserId(), user);
     }
 
+    public static void deleteUser(String userId) {
+        users.remove(userId);
+    }
+
     public static User findUserById(String userId) {
         return users.get(userId);
     }
