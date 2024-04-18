@@ -14,7 +14,7 @@
     <link href="../css/styles.css" rel="stylesheet">
 </head>
 <body>
-<c:import url="./nav/nav.jsp" />
+<c:import url="/nav/nav.jsp" />
 
 <div class="container" id="main">
    <div class="col-md-6 col-md-offset-3">

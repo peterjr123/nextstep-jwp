@@ -32,7 +32,10 @@
                         <td>${user.userId}</td>
                         <td>${user.name}</td>
                         <td>${user.email}</td>
-                        <td><a href="./update" class="btn btn-success" role="button">수정</a>
+                        <td>
+                            <c:if test="${sessionScope.user.userId == user.userId}">
+                                <a href="./update" class="btn btn-success" role="button">수정</a>
+                            </c:if>
                         </td>
                     </tr>
                 </c:forEach>
