@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 
 <nav class="navbar navbar-fixed-top header">
@@ -28,7 +29,7 @@
                   <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
                 </ul>
              </li>
-             <li><a href="./user/list.html"><i class="glyphicon glyphicon-user"></i></a></li>
+             <li><a href="${pageContext.request.contextPath}/user/list"><i class="glyphicon glyphicon-user"></i></a></li>
            </ul>
         </div>
      </div>
@@ -46,14 +47,20 @@
         <div class="collapse navbar-collapse" id="navbar-collapse2">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="${pageContext.request.contextPath}/index.jsp">Posts</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/login.jsp?ver=1" role="button">로그인</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/form.jsp?ver=1" role="button">회원가입</a></li>
+                <c:choose>
+                    <c:when test="${empty user}">
+                        <li><a href="${pageContext.request.contextPath}/user/login.jsp?ver=1" role="button">로그인</a></li>
+                        <li><a href="${pageContext.request.contextPath}/user/form.jsp?ver=1" role="button">회원가입</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="${pageContext.request.contextPath}/user/logout?ver=1" role="button">로그아웃</a></li>
+                        <li><a href="#" role="button">개인정보수정</a></li>
+                    </c:otherwise>
+                </c:choose>
                 <!--
                 <li><a href="#loginModal" role="button" data-toggle="modal">로그인</a></li>
                 <li><a href="#registerModal" role="button" data-toggle="modal">회원가입</a></li>
                 -->
-                <li><a href="#" role="button">로그아웃</a></li>
-                <li><a href="#" role="button">개인정보수정</a></li>
             </ul>
         </div>
     </div>

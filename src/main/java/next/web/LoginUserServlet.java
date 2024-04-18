@@ -21,8 +21,11 @@ public class LoginUserServlet extends HttpServlet {
         if(user != null && user.getPassword().equals(reqPassword)) {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+        }
+        else {
+            resp.sendRedirect("./login_failed.jsp");
         }
 
-        resp.sendRedirect("/index.jsp");
     }
 }
