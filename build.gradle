@@ -8,6 +8,11 @@ plugins {
     id 'war'
 }
 
+group = 'org.nhnnext'
+version = '1.0'
+description = 'jwp-basic'
+sourceCompatibility='17'
+
 repositories {
     mavenLocal()
     maven {
@@ -33,10 +38,7 @@ dependencies {
     compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
 }
 
-group = 'org.nhnnext'
-version = '1.0'
-description = 'jwp-basic'
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+
 
 publishing {
     publications {
