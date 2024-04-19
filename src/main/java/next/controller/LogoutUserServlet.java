@@ -9,12 +9,11 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet("/user/logout")
-public class LogoutUserServlet extends HttpServlet {
+public class LogoutUserServlet extends MyServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         HttpSession session = req.getSession();
         session.invalidate();
-        resp.sendRedirect(req.getContextPath() + "/index.jsp");
+        return MyServlet.DO_REDIRECT + req.getContextPath() + "/index.jsp";
     }
 }

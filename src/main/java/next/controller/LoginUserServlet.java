@@ -8,24 +8,26 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import next.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-@WebServlet("/user/login")
-public class LoginUserServlet extends HttpServlet {
+public class LoginUserServlet extends MyServlet {
+    private static final Logger log = LoggerFactory.getLogger(LoginUserServlet.class);
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         User user = DataBase.findUserById(req.getParameter("userId"));
 
         String reqPassword = req.getParameter("password");
         if(user != null && user.getPassword().equals(reqPassword)) {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
-            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+            log.debug("user login: {}", user);
+            return MyServlet.DO_REDIRECT + req.getContextPath() + "/index.jsp";
         }
         else {
-            resp.sendRedirect("./login_failed.jsp");
+            return MyServlet.DO_REDIRECT + "./login_failed.jsp";
         }
-
     }
 }

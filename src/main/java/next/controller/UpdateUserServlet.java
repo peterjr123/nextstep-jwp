@@ -14,17 +14,16 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-@WebServlet("/user/update")
-public class UpdateUserServlet extends HttpServlet {
+public class UpdateUserServlet extends MyServlet {
     private static final Logger log = LoggerFactory.getLogger(UpdateUserServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("./update.jsp");
+    protected String doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        return MyServlet.DO_REDIRECT + "./update.jsp";
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected String doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User originalUser = (User) session.getAttribute("user");
 
@@ -36,6 +35,6 @@ public class UpdateUserServlet extends HttpServlet {
         DataBase.addUser(updatedUser);
         session.setAttribute("user", updatedUser);
 
-        resp.sendRedirect("./list");
+        return MyServlet.DO_REDIRECT + "./list";
     }
 }

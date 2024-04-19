@@ -27,6 +27,7 @@ public class ResourceFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        // "/" 경로에 대한 dispatcher는 재정의되었지만, default라는 이름은 재정의되지 않았다.
         this.defaultRequestDispatcher = filterConfig.getServletContext().getNamedDispatcher("default");
     }
 
