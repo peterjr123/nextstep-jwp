@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @WebServlet("/users/profile")
-public class ProfileController extends HttpServlet {
+public class ProfileServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override

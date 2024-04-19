@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
 <html lang="kr">
@@ -15,7 +15,7 @@
             <c:if test="${loginFailed}">
             <div class="alert alert-danger" role="alert">아이디 또는 비밀번호가 틀립니다. 다시 로그인 해주세요.</div>
             </c:if>
-            <form name="question" method="post" action="/users/login">
+            <form name="question" method="post" action="${pageContext.request.contextPath}/user/login">
                 <div class="form-group">
                     <label for="userId">사용자 아이디</label>
                     <input class="form-control" id="userId" name="userId" placeholder="User ID">

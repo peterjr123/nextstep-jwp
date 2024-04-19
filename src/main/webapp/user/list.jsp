@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
 <html lang="kr">
@@ -25,7 +25,10 @@
                         <td>${user.userId}</td>
                         <td>${user.name}</td>
                         <td>${user.email}</td>
-                        <td><a href="/users/updateForm?userId=${user.userId}" class="btn btn-success" role="button">수정</a>
+                        <td>
+                            <c:if test="${sessionScope.user.userId == user.userId}">
+                                <a href="./update" class="btn btn-success" role="button">수정</a>
+                            </c:if>
                         </td>
                     </tr>
                 </c:forEach>

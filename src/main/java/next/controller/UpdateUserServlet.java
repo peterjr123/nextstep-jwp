@@ -25,11 +25,11 @@ public class UpdateUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User updatedUser = new User(req.getParameter("userId"), req.getParameter("password"), req.getParameter("name"),
-                req.getParameter("email"));
-
         HttpSession session = req.getSession();
         User originalUser = (User) session.getAttribute("user");
+
+        User updatedUser = new User(originalUser.getUserId(), req.getParameter("password"), req.getParameter("name"),
+                req.getParameter("email"));
 
         // update user info in session&DB
         DataBase.deleteUser(originalUser.getUserId());
