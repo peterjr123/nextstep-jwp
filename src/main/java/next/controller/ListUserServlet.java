@@ -9,19 +9,21 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import core.db.DataBase;
+import jakarta.servlet.http.HttpSession;
 
-@WebServlet("")
-public class HomeController extends HttpServlet {
+@WebServlet("/user/list")
+public class ListUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("users", DataBase.findAll());
-        RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+        HttpSession session = req.getSession(false);
+        if(session != null && session.getAttribute("user") != null) {
+            req.setAttribute("users", DataBase.findAll());
+        }
+        RequestDispatcher rd = req.getRequestDispatcher("/user/list.jsp");
         rd.forward(req, resp);
     }
 }

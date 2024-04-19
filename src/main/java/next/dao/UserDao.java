@@ -61,7 +61,6 @@ public class UserDao {
                 user = new User(rs.getString("userId"), rs.getString("password"), rs.getString("name"),
                         rs.getString("email"));
             }
-
             return user;
         } finally {
             if (rs != null) {
