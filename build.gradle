@@ -55,3 +55,20 @@ tasks.withType(JavaCompile) {
 tasks.withType(Javadoc) {
     options.encoding = 'UTF-8'
 }
+
+task deploy(type: Copy) {
+    dependsOn tasks.build
+
+    def warName = 'jwp-basic-1.0.war'
+    def tomcatDir = System.getenv('CATALINA_HOME') + "/webapps"
+
+    // copy war file to tomcat webapps
+    from layout.buildDirectory.file('libs/' + warName)
+    rename {
+        String fileName -> return 'ROOT.war'
+    }
+    into tomcatDir
+
+    // delete ROOT dir in webapps
+    delete tomcatDir+'/ROOT'
+}
