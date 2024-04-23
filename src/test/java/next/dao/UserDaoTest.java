@@ -2,6 +2,7 @@ package next.dao;
 
 import static org.junit.Assert.assertEquals;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.Before;
@@ -19,6 +20,13 @@ public class UserDaoTest {
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
         populator.addScript(new ClassPathResource("jwp.sql"));
         DatabasePopulatorUtils.execute(populator, ConnectionManager.getDataSource());
+    }
+
+    @Test
+    public void findByUserId() throws SQLException {
+        UserDao userDao = new UserDao();
+        User user = userDao.findByUserId("admin");
+        assertEquals("password", user.getPassword());
     }
 
     @Test
