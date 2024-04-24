@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <!DOCTYPE html>
 <html lang="kr">
@@ -12,7 +12,7 @@
 <div class="container" id="main">
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default content-main">
-            <form name="question" method="post" action="/users/update">
+            <form name="question" method="post" action="${pageContext.request.contextPath}/users/update">
                 <input type="hidden" name="userId" value="${user.userId}" />
                 <div class="form-group">
                     <label>사용자 아이디</label>

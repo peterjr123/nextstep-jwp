@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 
 <!DOCTYPE html>
 <html lang="kr">
@@ -19,7 +19,7 @@
 					<div class="wrap">
 						<div class="main">
 							<strong class="subject">
-								<a href="/qna/show?questionId=${each.questionId}">${each.title}</a>
+								<a href="${pageContext.request.contextPath}/qna/show?questionId=${each.questionId}">${each.title}</a>
 							</strong>
 							<div class="auth-info">
 								<i class="icon-add-comment"></i>
@@ -49,7 +49,7 @@
 					</ul>
 				</div>
 				<div class="col-md-3 qna-write">
-					<a href="/qna/form" class="btn btn-primary pull-right" role="button">질문하기</a>
+					<a href="${pageContext.request.contextPath}/qna/form.html" class="btn btn-primary pull-right" role="button">질문하기</a>
 				</div>
 			</div>
 		</div>
