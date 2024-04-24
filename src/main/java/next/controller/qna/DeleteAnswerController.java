@@ -19,9 +19,8 @@ public class DeleteAnswerController implements Controller {
         int answerId = Integer.parseInt(req.getParameter("answerId"));
         log.debug("answerId: {}", answerId);
 
-        Result result = Result.ok();
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setAttribute("result", result);
+        modelAndView.setAttribute("result", Result.ok());
         return modelAndView;
     }
 }

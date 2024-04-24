@@ -33,13 +33,4 @@ public class ModelAndView {
     public String getViewName() {
         return viewName;
     }
-
-    public View getView() {
-        if(viewName.endsWith(".jsp")) {
-            return new JspView(model, viewName);
-        }
-        else {
-            return new JsonView(model);
-        }
-    }
 }

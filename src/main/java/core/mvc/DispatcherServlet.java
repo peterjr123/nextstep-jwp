@@ -46,12 +46,12 @@ public class DispatcherServlet extends HttpServlet {
     private void move(ModelAndView modelAndView, HttpServletRequest req, HttpServletResponse resp)
             throws Exception {
         String viewName = modelAndView.getViewName();
-        if (viewName != null && viewName.startsWith(DEFAULT_REDIRECT_PREFIX)) {
+        if (viewName.startsWith(DEFAULT_REDIRECT_PREFIX)) {
             resp.sendRedirect(req.getContextPath() + viewName.substring(DEFAULT_REDIRECT_PREFIX.length()));
             return;
         }
 
-        View view = modelAndView.getView();
+        View view = ViewDispatcher.findView(modelAndView);
         view.createResponse(req, resp);
     }
 }
