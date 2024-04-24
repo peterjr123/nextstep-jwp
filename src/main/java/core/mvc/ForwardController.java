@@ -2,6 +2,7 @@ package core.mvc;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import next.model.ModelAndView;
 
 public class ForwardController implements Controller {
     private String forwardUrl;
@@ -14,7 +15,7 @@ public class ForwardController implements Controller {
     }
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        return forwardUrl;
+    public ModelAndView execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        return new ModelAndView(forwardUrl);
     }
 }

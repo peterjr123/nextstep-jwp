@@ -5,12 +5,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import core.mvc.Controller;
 import next.dao.QuestionDao;
+import next.model.ModelAndView;
 
 public class HomeController implements Controller {
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    public ModelAndView execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        ModelAndView modelAndView = new ModelAndView();
         QuestionDao questionDao = new QuestionDao();
-        req.setAttribute("questions", questionDao.findAll());
-        return "home.jsp";
+
+        modelAndView.setAttribute("questions", questionDao.findAll());
+        modelAndView.setViewName("home.jsp");
+        return modelAndView;
     }
 }

@@ -6,15 +6,19 @@ import jakarta.servlet.http.HttpServletResponse;
 import core.mvc.Controller;
 import next.dao.AnswerDao;
 import next.dao.QuestionDao;
+import next.model.ModelAndView;
 
 public class ShowController implements Controller {
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    public ModelAndView execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         Long questionId = Long.parseLong(req.getParameter("questionId"));
         QuestionDao questionDao = new QuestionDao();
         AnswerDao answerDao = new AnswerDao();
-        req.setAttribute("question", questionDao.findById(questionId));
-        req.setAttribute("answers", answerDao.findAllByQuestionId(questionId));
-        return "/qna/show.jsp";
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setAttribute("question", questionDao.findById(questionId));
+        modelAndView.setAttribute("answers", answerDao.findAllByQuestionId(questionId));
+        modelAndView.setViewName("/qna/show.jsp");
+        return modelAndView;
     }
 }
