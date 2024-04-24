@@ -76,7 +76,7 @@
 											<a class="link-modify-article" href="/api/qna/updateAnswer?answerId=${each.answerId}">수정</a>
 										</li>
 										<li>
-											<form class="form-delete" action="/api/qna/deleteAnswer" method="POST">
+											<form class="form-delete" action="${pageContext.request.contextPath}/api/qna/deleteAnswer" method="POST">
 												<input type="hidden" name="answerId" value="${each.answerId}" />
 												<button type="submit" class="link-delete-article">삭제</button>
 											</form>
@@ -86,7 +86,7 @@
 							</article>
                             </c:forEach>
 							<div class="answerWrite">
-								<form name="answer" method="post">
+								<form name="answer" method="post" action="${pageContext.request.contextPath}/api/qna/addAnswer">
 									<input type="hidden" name="questionId" value="${question.questionId}">
 									<div class="form-group col-lg-4" style="padding-top:10px;">
 										<input class="form-control" id="writer" name="writer" placeholder="이름">
@@ -126,7 +126,7 @@
 					<a class="link-modify-article" href="/api/qna/updateAnswer/{3}">수정</a>
 				</li>
 				<li>
-					<form class="form-delete" action="/api/qna/deleteAnswer" method="POST">
+					<form class="form-delete" action="${pageContext.request.contextPath}/api/qna/deleteAnswer" method="POST">
 						<input type="hidden" name="answerId" value="{4}" />
 						<button type="submit" class="link-delete-article">삭제</button>
 					</form>
