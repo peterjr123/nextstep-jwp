@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 public class DispatcherServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
-    private static final String DEFAULT_REDIRECT_PREFIX = "redirect:";
 
     private RequestMapping rm;
 
@@ -36,22 +35,11 @@ public class DispatcherServlet extends HttpServlet {
         Controller controller = rm.findController(requestUri);
         try {
             ModelAndView modelAndView = controller.execute(req, resp);
-            move(modelAndView, req, resp);
+            View view = ViewDispatcher.findView(modelAndView);
+            view.createResponse(req, resp);
         } catch (Throwable e) {
             logger.error("Exception : {}", e);
             throw new ServletException(e.getMessage());
         }
-    }
-
-    private void move(ModelAndView modelAndView, HttpServletRequest req, HttpServletResponse resp)
-            throws Exception {
-        String viewName = modelAndView.getViewName();
-        if (viewName.startsWith(DEFAULT_REDIRECT_PREFIX)) {
-            resp.sendRedirect(req.getContextPath() + viewName.substring(DEFAULT_REDIRECT_PREFIX.length()));
-            return;
-        }
-
-        View view = ViewDispatcher.findView(modelAndView);
-        view.createResponse(req, resp);
     }
 }
