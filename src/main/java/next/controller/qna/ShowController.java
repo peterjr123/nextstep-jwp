@@ -2,8 +2,8 @@ package next.controller.qna;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import next.dao.AnswerDao;
 import next.dao.QuestionDao;
@@ -23,6 +23,9 @@ public class ShowController extends AbstractController {
         Long questionId = Long.parseLong(req.getParameter("questionId"));
 
         question = questionDao.findById(questionId);
+        if(question == null) {
+            return jspView("redirect:/");
+        }
         answers = answerDao.findAllByQuestionId(questionId);
 
         ModelAndView mav = jspView("/qna/show.jsp");

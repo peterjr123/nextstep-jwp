@@ -1,8 +1,8 @@
 package next.controller.user;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import core.mvc.AbstractController;
 import core.mvc.ModelAndView;
@@ -12,6 +12,6 @@ public class LogoutController extends AbstractController {
     public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         session.removeAttribute("user");
-        return jspView("redirect:/qna/list");
+        return jspView("redirect:/");
     }
 }

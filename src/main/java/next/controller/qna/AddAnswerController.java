@@ -1,8 +1,9 @@
 package next.controller.qna;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
+import next.dao.QuestionDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +24,9 @@ public class AddAnswerController extends AbstractController {
         log.debug("answer : {}", answer);
 
         Answer savedAnswer = answerDao.insert(answer);
+        QuestionDao questionDao = new QuestionDao();
+        questionDao.increaseAnswerCount(Long.valueOf(req.getParameter("questionId")));
+
         return jsonView().addObject("answer", savedAnswer);
     }
 }
